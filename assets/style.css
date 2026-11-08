@@ -130,6 +130,8 @@ a:hover { text-decoration: underline; }
   margin: 0 0 12px; padding-left: 12px; border-left: 2px solid var(--gold);
   font-family: var(--serif); color: var(--ink-2); font-size: 13.5px; line-height: 1.8;
 }
+.map-label { color: var(--red); font-size: 10.5px; letter-spacing: 1px; margin: 0 0 4px; }
+.map-overview { font-family: var(--serif); font-size: 13.5px; line-height: 1.85; color: var(--ink-2); margin: 0 0 10px; }
 .map-info .src { color: var(--muted); font-size: 11.5px; margin: 0 0 12px; }
 .map-info .btn { width: 100%; }
 .muted { color: var(--muted); }
@@ -156,6 +158,7 @@ a:hover { text-decoration: underline; }
 .card .date { color: var(--red); font-size: 12px; margin: 0 0 2px; }
 .card .places { color: var(--muted); font-size: 11.5px; margin: 0 0 10px; }
 .mini { margin: 0 0 6px; padding-left: 10px; border-left: 2px solid var(--gold); font-family: var(--serif); font-size: 12.5px; color: var(--ink-2); line-height: 1.7; }
+.card-overview { margin: 0 0 8px; font-size: 13px; color: var(--ink-2); line-height: 1.85; }
 .card .src { color: var(--muted); font-size: 10.5px; margin: 0 0 12px; }
 .more { margin-top: auto; font-size: 12px; color: var(--red); }
 
@@ -179,6 +182,7 @@ a:hover { text-decoration: underline; }
 .t-main h3 a { color: var(--ink); }
 .t-main p { margin: 0 0 6px; color: var(--muted); font-size: 11.5px; }
 .t-main blockquote { margin: 0 0 6px; font-family: var(--serif); color: var(--ink-2); font-size: 13px; line-height: 1.8; }
+.t-overview { margin: 0 0 8px; color: var(--ink-2); font-size: 14px; line-height: 1.9; }
 .t-main .src { color: var(--muted); font-size: 10.5px; }
 .search {
   width: 100%; max-width: 520px; margin-top: 18px;
@@ -197,6 +201,17 @@ a:hover { text-decoration: underline; }
 .event-head .places { color: var(--muted); font-size: 12.5px; margin: 0; }
 .box { grid-column: 1 / -1; background: rgba(176,138,62,.07); border: 1px solid rgba(176,138,62,.25); padding: 12px 16px; font-size: 12.5px; color: var(--ink-2); }
 .event-main h2, .event-side h2, .sources-block h2 { font-family: var(--serif); font-size: 21px; letter-spacing: 2px; margin: 26px 0 12px; }
+.overview {
+  grid-column: 1 / -1;
+  background: linear-gradient(180deg, rgba(176,138,62,.08), rgba(176,138,62,.03));
+  border: 1px solid rgba(176,138,62,.28);
+  border-left: 4px solid var(--gold);
+  padding: 22px 26px 18px;
+  margin-top: 6px;
+}
+.overview h2 { margin: 0 0 10px; color: var(--red); }
+.overview p { font-family: var(--serif); font-size: 17px; line-height: 2; color: var(--ink); margin: 0 0 10px; }
+.overview .overview-src { font-family: var(--sans); font-size: 11.5px; line-height: 1.7; color: var(--muted); margin: 4px 0 0; }
 .quote { margin: 0 0 26px; padding: 0 0 0 18px; border-left: 3px solid var(--red); }
 .quote blockquote { margin: 0 0 8px; font-family: var(--serif); font-size: 17px; line-height: 1.95; color: var(--ink); }
 .quote figcaption { color: var(--muted); font-size: 11.5px; }

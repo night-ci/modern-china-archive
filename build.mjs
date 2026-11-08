@@ -79,7 +79,7 @@ ${base ? `<base href="${base}">` : ''}
 <main>${body}</main>
 <footer class="site-foot">
   <div class="wrap">
-    <p>本站只收录国家机构公开资料，逐条标注出处；除结构化标签与编纂说明外，不添加解释性文字。</p>
+    <p>本站以来源为限，提供导览式叙述与原文摘录；所有事实均可追溯至所引国家机构资料。</p>
     <p>原文版权归原机构所有；本站以摘录与链接方式引用。<a href="methodology.html">编纂原则</a> · <a href="corrections.html">勘误</a> · <a href="data/events.json">数据</a> · <a href="${SITE.repo}" target="_blank" rel="noopener">GitHub</a></p>
   </div>
 </footer>
@@ -102,32 +102,34 @@ function quoteBlock(q, i) {
 
 function eventCard(e) {
   const first = e.quotes[0];
-  const s = first ? srcById[first.source_id] : null;
-  const inst = s ? (instById[s.institution_id] || { name: '' }) : { name: '' };
+  const overview = e.overview || (first ? first.text : '');
   const search = [e.title, e.period, e.category, ...(e.tags || []), ...(e.places || []).map(p => p.historical + ' ' + p.modern), ...(e.actors || []), ...(e.orgs || [])].join(' ');
   return `<article class="card" data-search="${esc(search)}">
     <div class="card-top"><span class="period">${esc(e.period)}</span><span class="cat">${esc(e.category)}</span></div>
     <h3><a href="events/${esc(e.id)}.html">${esc(e.title)}</a></h3>
     <p class="date">${esc(e.date_display)}</p>
     <p class="places">${(e.places || []).map(p => esc(p.historical)).join(' · ')}</p>
-    ${first ? `<blockquote class="mini">“${esc(truncate(first.text, 92))}”</blockquote>
-    <p class="src">—— ${esc(inst.name)}${s && s.published ? '，' + esc(s.published) : ''}</p>` : ''}
-    <a class="more" href="events/${esc(e.id)}.html">查看原文与出处 →</a>
+    ${overview ? `<p class="card-overview">${esc(truncate(overview, 112))}</p>
+    <p class="src">导览 · 据所引来源整理</p>` : ''}
+    <a class="more" href="events/${esc(e.id)}.html">查看导览与原文 →</a>
   </article>`;
 }
 
 function mapData() {
   return events.map(e => {
     const q = e.quotes[0];
-    const s = q ? srcById[q.source_id] : null;
+    const instNames = [...new Set((e.source_ids || []).map(id => {
+      const s = srcById[id];
+      return s ? (instById[s.institution_id] || {}).name : '';
+    }).filter(Boolean))];
     return {
       id: e.id,
       title: e.title,
       date: e.date_display,
       period: e.period,
       url: `events/${e.id}.html`,
-      quote: q ? q.text : '',
-      source: s ? (s.original_source || (instById[s.institution_id] || {}).name || '') : '',
+      overview: e.overview || (q ? q.text : ''),
+      source: instNames.join('、'),
       places: e.places || []
     };
   });
@@ -138,16 +140,16 @@ const periodCounts = PERIODS.map(p => [p, events.filter(e => e.period === p).len
 const homeBody = `
 <section class="hero">
   <div class="wrap">
-    <p class="kicker">国家机构公开资料 · 史料汇编</p>
+    <p class="kicker">国家机构公开资料 · 导览与原文</p>
     <div class="hero-tags"><span class="badge">M0 样稿</span><span class="badge">10 条已核验</span><span class="badge">1840—2021</span></div>
     <h1>中国近现代史<br>史料图谱</h1>
-    <p class="lede">以时间与地点为骨架，把散落在国家机构网站上的原文放回同一张图上。每一条事实都附出处，每一段引文都能回到原文。</p>
+    <p class="lede">以时间与地点为骨架，把国家机构公开资料整理成可读的导览与可核对的原文。先读整体，再回到出处。</p>
     <div class="hero-actions">
       <a class="btn primary" href="timeline.html">按时间阅读</a>
       <a class="btn" href="map.html">在地图上查看</a>
       <a class="btn ghost" href="methodology.html">编纂原则</a>
     </div>
-    <p class="notice">本站为史料汇编，不作解释。引文、来源与链接优先；除结构化标签外，不添加评述。</p>
+    <p class="notice">以来源为限：导览文字可以连贯、可读，也可以解释背景与因果，但不超出所引资料；关键事实仍逐条附原文与链接。</p>
   </div>
 </section>
 
@@ -175,7 +177,7 @@ const homeBody = `
 <section class="section wrap">
   <div class="section-head">
     <h2>编年</h2>
-    <p>按时期排列。所有条目均可进入详情页查看原文摘录与出处。</p>
+    <p>按时期排列。每条先读导览，再进入详情页查看原文摘录与出处。</p>
   </div>
   <div class="period-bar">
     ${periodCounts.map(([p, n]) => `<a href="timeline.html#${encodeURIComponent(p)}">${esc(p)} <span>${n}</span></a>`).join('')}
@@ -223,16 +225,15 @@ const timelineBody = `
     return `<section id="${esc(p)}" class="period-block">
       <h2>${esc(p)}<span>${list.length} 条</span></h2>
       ${list.map(e => {
-        const q = e.quotes[0]; const s = q ? srcById[q.source_id] : null;
-        const inst = s ? (instById[s.institution_id] || { name: '' }) : { name: '' };
+        const overview = e.overview || (e.quotes[0] ? e.quotes[0].text : '');
         const search = [e.title, e.period, e.category, ...(e.tags || []), ...(e.places || []).map(x => x.historical + ' ' + x.modern)].join(' ');
         return `<article class="t-row" data-search="${esc(search)}">
           <div class="t-date">${esc(e.date_display)}</div>
           <div class="t-main">
             <h3><a href="events/${esc(e.id)}.html">${esc(e.title)}</a></h3>
             <p>${(e.places || []).map(x => esc(x.historical)).join(' · ')}</p>
-            ${q ? `<blockquote>“${esc(truncate(q.text, 120))}”</blockquote>` : ''}
-            <span class="src">${esc(inst.name)}${s && s.published ? '，' + esc(s.published) : ''}</span>
+            ${overview ? `<p class="t-overview">${esc(truncate(overview, 155))}</p>` : ''}
+            <span class="src">导览 · 据 ${(e.source_ids || []).length} 个来源整理</span>
           </div>
         </article>`;
       }).join('')}
@@ -289,7 +290,13 @@ for (const e of events) {
     <p class="places">${(e.places || []).map(p => `${esc(p.historical)}${p.modern && p.modern !== p.historical ? `（今 ${esc(p.modern)}）` : ''}`).join(' · ')}</p>
   </header>
 
-  <div class="notice box">以下为原文摘录。除结构化小标题外，本站不添加解释性文字；请以所引原文为准。</div>
+  <div class="notice box">导览为本站据所引来源整理的叙述，不是原文；原文摘录见下方。如导览与原文不一致，以原文为准。</div>
+
+  <section class="overview">
+    <h2>导览</h2>
+    ${(e.overview || '').split(/\n+/).filter(Boolean).map(p => `<p>${esc(p)}</p>`).join('')}
+    <p class="overview-src">据：${(e.overview_sources || e.source_ids || []).map(id => srcById[id]).filter(Boolean).map(s => sourceLink(s)).join('、')} 整理。</p>
+  </section>
 
   <section class="event-main">
     <h2>原文摘录</h2>
@@ -399,21 +406,29 @@ fs.writeFileSync(path.join(dist, 'institutions.html'), layout({
 const methodologyBody = `
 <section class="page-head wrap">
   <p class="kicker">编纂原则</p>
-  <h1>只呈现原文，不作解释</h1>
-  <p class="lede">本站的目标不是写一部历史，而是把国家机构已经公开的原文、出处与链接整理成可检索、可核对的史料图谱。</p>
+  <h1>有叙述，也有边界</h1>
+  <p class="lede">本站以国家机构公开资料为限，写可读的导览，也保留可核对的原文。叙述可以连贯、可以文学化，但不能超出所引资料。</p>
 </section>
 <section class="wrap prose">
   <h2>一、定位</h2>
-  <p>本站为史料汇编。事件页由元数据、原文摘录、来源与原文链接组成；除“时间”“地点”“原文摘录”等结构化标签外，不撰写解释、评价、因果分析或文学化叙述。</p>
-  <h2>二、收录标准</h2>
+  <p>本站不是纯摘录库，也不是无出处的历史写作。事件页由导览、元数据、原文摘录、来源与原文链接组成：导览负责把事件讲清楚，原文负责让读者核对。</p>
+  <h2>二、叙述边界</h2>
+  <ul>
+    <li><strong>允许：</strong>整体性描述、背景介绍、因果解释、结构性串联，以及适度的文学化表达。</li>
+    <li><strong>必须：</strong>每个事实性陈述都能在所引来源中找到依据；导览段末标注来源；关键数字、日期、地名、人物与原文一致。</li>
+    <li><strong>禁止：</strong>编造细节、对话、心理活动与场景；把来源没有的判断写成事实；把导览文字冒充原文；用修辞改变事实。</li>
+    <li><strong>评价：</strong>评价性表述须有国家机构原文依据，否则改为中性描述。</li>
+    <li><strong>冲突：</strong>导览与原文不一致时，以原文为准，并在勘误中修订。</li>
+  </ul>
+  <h2>三、收录标准</h2>
   <ul>
     <li>全国性事件优先收录；省级只收具有全国影响的事件；县级及以下只收具有全国影响或典型意义者。</li>
     <li>每条至少有一个国家机构来源；核心条目尽量提供两个以上独立来源。</li>
     <li>同一事件如官方来源之间存在差异，保留原文并并列出处，不作裁断。</li>
   </ul>
-  <h2>三、来源白名单</h2>
+  <h2>四、来源白名单</h2>
   <p>中央国家机构、国家馆藏、国家媒体、国家科研机构，以及经审核列入白名单的地方党史办、地方志办、地方政府网站与地方党报。个人博客、自媒体、百科与商业聚合不在收录范围。</p>
-  <h2>四、原文与版权</h2>
+  <h2>五、原文与版权</h2>
   <ul>
     <li>政府文件、法律法规、公报、白皮书：可全文转载并保存本地快照。</li>
     <li>国家媒体报道：有限摘录 + 官方原文链接，不整篇镜像。</li>
@@ -421,19 +436,19 @@ const methodologyBody = `
     <li>档案：馆藏号 + 目录链接；无在线全文时明确标注“需到馆查阅”。</li>
     <li>图片：仅使用公有领域或已授权素材；否则只提供来源链接。</li>
   </ul>
-  <h2>五、时间范围</h2>
+  <h2>六、时间范围</h2>
   <p>1840—2021。2021 年以后仅作大事记式延伸，另行复核。</p>
-  <h2>六、勘误</h2>
+  <h2>七、勘误</h2>
   <p>如发现引文、日期、地名、链接或机构信息有误，请在 GitHub 提交 Issue，或通过勘误页提供原文链接。修订会保留版本记录。</p>
-  <h2>七、说明</h2>
-  <p>“不解释”不等于“无立场”。事件的选择、标题的确定与条目的编排仍然需要判断；本站通过公开收录标准、逐条出处与原文链接，使这些判断可以被检查。</p>
-  <p>当前版本为 M0 样稿，收录 10 条跨时期史料，用于验证来源、引文、页面与地图流程。下一阶段扩充至 100 条内部测试，再扩充至 1000 条以上公开。</p>
+  <h2>八、说明</h2>
+  <p>有叙述就一定有选择。事件的选择、标题的确定、导览的详略与条目的编排仍然需要判断；本站通过公开收录标准、导览来源、逐条原文与链接，使这些判断可以被检查。</p>
+  <p>当前版本为 M0 样稿，收录 10 条跨时期史料，用于验证来源、导览、引文、页面与地图流程。下一阶段扩充至 100 条内部测试，再扩充至 1000 条以上公开。</p>
 </section>
 `;
 
 fs.writeFileSync(path.join(dist, 'methodology.html'), layout({
   title: '编纂原则',
-  description: '收录标准、来源白名单、原文与版权策略。',
+  description: '叙述边界、收录标准、来源白名单、原文与版权策略。',
   body: methodologyBody,
   active: 'methodology'
 }));

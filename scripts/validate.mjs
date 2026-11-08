@@ -33,6 +33,14 @@ for (const e of events) {
   for (const id of e.source_ids || []) {
     if (!srcById[id]) errors.push(`event ${e.id}: unknown source_id ${id}`);
   }
+  for (const id of e.overview_sources || []) {
+    if (!srcById[id]) errors.push(`event ${e.id}: unknown overview source ${id}`);
+    if (!(e.source_ids || []).includes(id)) errors.push(`event ${e.id}: overview source ${id} not in source_ids`);
+  }
+  if (e.status === 'published') {
+    if (!e.overview || e.overview.trim().length < 40) errors.push(`event ${e.id}: published without a substantive overview`);
+    if (!Array.isArray(e.overview_sources) || e.overview_sources.length === 0) errors.push(`event ${e.id}: overview without sources`);
+  }
   if (e.status === 'published' && !e.last_reviewed) errors.push(`event ${e.id}: published without last_reviewed`);
 }
 

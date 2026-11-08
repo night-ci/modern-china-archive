@@ -36,8 +36,9 @@
       '<h3>' + ev.title + '</h3>' +
       '<p class="date">' + ev.date + '</p>' +
       (first ? '<p class="period">' + first.historical + '</p>' : '') +
-      '<blockquote>“' + (ev.quote || '').slice(0, 120) + ((ev.quote || '').length > 120 ? '…' : '') + '”</blockquote>' +
-      '<p class="src">—— ' + (ev.source || '') + '</p>' +
+      '<p class="map-label">导览</p>' +
+      '<p class="map-overview">' + (ev.overview || '').slice(0, 140) + ((ev.overview || '').length > 140 ? '…' : '') + '</p>' +
+      '<p class="src">据 ' + (ev.source || '') + ' 整理</p>' +
       '<a class="btn primary" href="' + ev.url + '">查看原文与出处</a>';
   }
 
