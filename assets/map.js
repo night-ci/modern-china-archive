@@ -28,6 +28,7 @@
   addLayer('vec');
   addLayer('cva');
 
+
   function showEvent(ev) {
     if (!info) return;
     var first = (ev.places && ev.places[0]) || null;

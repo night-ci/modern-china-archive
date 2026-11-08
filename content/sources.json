@@ -130,5 +130,29 @@
     "original_source": "新华网",
     "locator_note": "正文首段",
     "note": "共产党员网转载"
+  },
+  {
+    "id": "cpc12371-ds100",
+    "institution_id": "cpc12371",
+    "title": "中国共产党一百年大事记（1921年7月—2021年6月）",
+    "type": "编年体大事记",
+    "published": "2021-06-28",
+    "url": "https://www.12371.cn/2021/06/28/ARTI1624828749818652.shtml",
+    "accessed": "2026-11-08",
+    "original_source": "中共中央党史和文献研究院",
+    "locator_note": "按日期检索",
+    "note": "共产党员网刊发"
+  },
+  {
+    "id": "cpc12371-prc70",
+    "institution_id": "cpc12371",
+    "title": "中华人民共和国大事记（1949年10月—2019年9月）",
+    "type": "编年体大事记",
+    "published": "2019-09-27",
+    "url": "https://www.12371.cn/2019/09/27/ARTI1569582665702388.shtml",
+    "accessed": "2026-11-08",
+    "original_source": "中共中央党史和文献研究院",
+    "locator_note": "按日期检索",
+    "note": "共产党员网刊发"
   }
 ]
