@@ -58,6 +58,8 @@ ${base ? `<base href="${base}">` : ''}
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>${esc(title)} · ${SITE.title}</title>
 <meta name="description" content="${esc(description)}">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<meta name="theme-color" content="#b3141c">
 <link rel="stylesheet" href="assets/style.css">
 <link rel="stylesheet" href="assets/leaflet/leaflet.css">
 </head>

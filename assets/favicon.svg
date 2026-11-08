@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <rect width="64" height="64" rx="10" fill="#b3141c"/>
+  <rect x="5" y="5" width="54" height="54" rx="7" fill="none" stroke="#ffffff" stroke-opacity=".35" stroke-width="2"/>
+  <text x="32" y="45" text-anchor="middle" font-family="Songti SC, SimSun, serif" font-size="38" fill="#ffffff">史</text>
+</svg>
