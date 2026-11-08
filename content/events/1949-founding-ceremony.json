@@ -1,0 +1,37 @@
+{
+  "id": "1949-founding-ceremony",
+  "title": "开国大典",
+  "aliases": ["中华人民共和国中央人民政府成立典礼"],
+  "period": "解放战争",
+  "category": "国家仪式",
+  "date_start": "1949-10-01",
+  "date_end": "1949-10-01",
+  "date_precision": "day",
+  "date_display": "1949年10月1日",
+  "places": [
+    { "historical": "北京天安门广场", "modern": "北京天安门广场", "coord": [116.39, 39.90] }
+  ],
+  "actors": ["毛泽东"],
+  "orgs": ["中华人民共和国中央人民政府"],
+  "quotes": [
+    {
+      "text": "1949年10月1日15时，30万军民在北京天安门广场隆重举行开国大典。伴随着《义勇军进行曲》激昂奋进的旋律，毛泽东主席亲手按动电钮，升起中华人民共和国的第一面五星红旗。",
+      "source_id": "cpc12371-kaiguo",
+      "locator": "正文"
+    },
+    {
+      "text": "接着，毛主席以他那浓重的湖南口音向全世界庄严宣告：“中华人民共和国中央人民政府今天成立了！”",
+      "source_id": "cpc12371-kaiguo",
+      "locator": "正文"
+    },
+    {
+      "text": "1949年10月1日，在天安门广场举行的开国大典阅兵，是新中国成立后的第一次阅兵，这次阅兵也成为我国现代阅兵式的蓝本。",
+      "source_id": "cpc12371-kaiguo",
+      "locator": "正文"
+    }
+  ],
+  "source_ids": ["cpc12371-kaiguo"],
+  "tags": ["建国", "国家仪式"],
+  "status": "published",
+  "last_reviewed": "2026-11-08"
+}

@@ -1,0 +1,33 @@
+{
+  "id": "1894-jiawu",
+  "title": "甲午战争",
+  "aliases": ["中日甲午战争"],
+  "period": "晚清",
+  "category": "战争",
+  "date_start": "1894-01-01",
+  "date_end": "1895-12-31",
+  "date_precision": "year",
+  "date_display": "1894年—1895年",
+  "places": [
+    { "historical": "山东威海", "modern": "山东威海", "coord": [122.12, 37.51] },
+    { "historical": "辽东半岛", "modern": "辽宁大连旅顺", "coord": [121.26, 38.81] }
+  ],
+  "actors": ["李鸿章"],
+  "orgs": ["日本", "清朝", "北洋舰队"],
+  "quotes": [
+    {
+      "text": "光绪二十年至二十一年（1894—1895年），日本侵略朝鲜与中国的战争。",
+      "source_id": "dpm-jiawu",
+      "locator": "词条正文"
+    },
+    {
+      "text": "因李鸿章坚持避战静守的消极方针，致使清军十分被动。日军很快攻陷平壤，然后由海陆两线直逼中国，清北洋舰队全军覆没，辽东半岛陷落。最后日本迫使清政府签订丧权辱国的《马关条约》。",
+      "source_id": "dpm-jiawu",
+      "locator": "词条正文"
+    }
+  ],
+  "source_ids": ["dpm-jiawu"],
+  "tags": ["战争", "不平等条约", "晚清"],
+  "status": "published",
+  "last_reviewed": "2026-11-08"
+}

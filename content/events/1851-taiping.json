@@ -1,0 +1,33 @@
+{
+  "id": "1851-taiping",
+  "title": "太平天国起义",
+  "aliases": ["太平天国运动"],
+  "period": "晚清",
+  "category": "农民战争",
+  "date_start": "1851-01-01",
+  "date_end": "1864-12-31",
+  "date_precision": "year",
+  "date_display": "1851年—1864年",
+  "places": [
+    { "historical": "广西桂平金田村", "modern": "广西桂平", "coord": [110.08, 23.40] },
+    { "historical": "江苏南京", "modern": "江苏南京", "coord": [118.78, 32.06] }
+  ],
+  "actors": ["洪秀全"],
+  "orgs": ["太平天国", "清朝"],
+  "quotes": [
+    {
+      "text": "咸丰元年（1851年）至同治三年（1864年）间的农民战争，以反对清朝封建统治与外国侵略为革命宗旨。领袖洪秀全最初起义于广西桂平金田村，建号太平天国，称天王。",
+      "source_id": "dpm-taiping",
+      "locator": "词条正文"
+    },
+    {
+      "text": "此次农民战争历时14年，南北纵横征战18省，是中国历代农民战争的最高峰。",
+      "source_id": "dpm-taiping",
+      "locator": "词条正文"
+    }
+  ],
+  "source_ids": ["dpm-taiping"],
+  "tags": ["农民战争", "晚清"],
+  "status": "published",
+  "last_reviewed": "2026-11-08"
+}

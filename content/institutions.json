@@ -1,0 +1,65 @@
+[
+  {
+    "id": "qstheory",
+    "name": "求是网",
+    "short": "求是网",
+    "type": "中央党刊网站",
+    "domain": "qstheory.cn",
+    "url": "https://www.qstheory.cn",
+    "note": "《求是》杂志主办"
+  },
+  {
+    "id": "dpm",
+    "name": "故宫博物院",
+    "short": "故宫博物院",
+    "type": "国家博物馆",
+    "domain": "dpm.org.cn",
+    "url": "https://www.dpm.org.cn",
+    "note": "文化和旅游部直属"
+  },
+  {
+    "id": "cpc12371",
+    "name": "共产党员网",
+    "short": "共产党员网",
+    "type": "党员教育平台",
+    "domain": "12371.cn",
+    "url": "https://www.12371.cn",
+    "note": "中共中央组织部主办"
+  },
+  {
+    "id": "mod",
+    "name": "中华人民共和国国防部",
+    "short": "国防部",
+    "type": "国家部委",
+    "domain": "mod.gov.cn",
+    "url": "http://www.mod.gov.cn",
+    "note": "国防部官方网站"
+  },
+  {
+    "id": "xinhua",
+    "name": "新华社",
+    "short": "新华社",
+    "type": "国家通讯社",
+    "domain": "news.cn",
+    "url": "http://www.news.cn",
+    "note": "国家通讯社"
+  },
+  {
+    "id": "cyol",
+    "name": "中国青年报",
+    "short": "中国青年报",
+    "type": "共青团中央机关报",
+    "domain": "cyol.com",
+    "url": "https://www.cyol.com",
+    "note": "共青团中央主管"
+  },
+  {
+    "id": "zuzhirenshi",
+    "name": "中国组织人事报",
+    "short": "中国组织人事报",
+    "type": "行业报",
+    "domain": "",
+    "url": "",
+    "note": "共产党员网转载来源"
+  }
+]

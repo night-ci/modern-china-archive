@@ -1,0 +1,32 @@
+{
+  "id": "1919-mayfourth",
+  "title": "五四运动",
+  "aliases": [],
+  "period": "民国初年",
+  "category": "爱国运动",
+  "date_start": "1919-05-04",
+  "date_end": "1919-05-04",
+  "date_precision": "day",
+  "date_display": "1919年5月4日",
+  "places": [
+    { "historical": "北京", "modern": "北京", "coord": [116.40, 39.90] }
+  ],
+  "actors": ["李大钊", "陈独秀"],
+  "orgs": ["北京大学"],
+  "quotes": [
+    {
+      "text": "1919年5月4日，北京大学等13所北京高校3000余名学生高喊“外争主权、内除国贼”的口号走上街头，为拯救民族危亡奔走呼号，中国近代史上具有划时代意义的五四运动轰轰烈烈地爆发了！",
+      "source_id": "cpc12371-wusi",
+      "locator": "正文"
+    },
+    {
+      "text": "五四运动是以一批先进青年知识分子为先锋、广大人民群众共同参与的彻底反帝反封建的爱国革命运动，开启了民族复兴的新的起点。",
+      "source_id": "cpc12371-wusi",
+      "locator": "正文"
+    }
+  ],
+  "source_ids": ["cpc12371-wusi"],
+  "tags": ["爱国运动", "新文化", "青年"],
+  "status": "published",
+  "last_reviewed": "2026-11-08"
+}

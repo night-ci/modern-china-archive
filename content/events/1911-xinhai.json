@@ -1,0 +1,33 @@
+{
+  "id": "1911-xinhai",
+  "title": "辛亥革命",
+  "aliases": ["武昌起义"],
+  "period": "晚清",
+  "category": "革命",
+  "date_start": "1911-10-01",
+  "date_end": "1911-10-31",
+  "date_precision": "month",
+  "date_display": "1911年10月",
+  "places": [
+    { "historical": "湖北武昌", "modern": "湖北武汉武昌", "coord": [114.30, 30.55] },
+    { "historical": "江苏南京", "modern": "江苏南京", "coord": [118.78, 32.06] }
+  ],
+  "actors": ["孙中山"],
+  "orgs": ["中国同盟会", "清朝"],
+  "quotes": [
+    {
+      "text": "1911年10月爆发的辛亥革命，是中国人民和中国先进分子为实现民族独立、人民解放进行的一次伟大而艰辛的探索，近代以来中国发生的深刻社会变革由此拉开了序幕。",
+      "source_id": "cpc12371-xinhai",
+      "locator": "正文第3问"
+    },
+    {
+      "text": "其次，它结束了在中国延续几千年的君主专制制度，建立了中华民国，有力促进了中国人民民主精神的普遍高涨，共和的观念从此深入人心，任何复辟帝制的企图都不能不由于遭到广大人民的反对而归于破产。",
+      "source_id": "cpc12371-xinhai",
+      "locator": "正文第3问"
+    }
+  ],
+  "source_ids": ["cpc12371-xinhai"],
+  "tags": ["革命", "共和", "晚清"],
+  "status": "published",
+  "last_reviewed": "2026-11-08"
+}

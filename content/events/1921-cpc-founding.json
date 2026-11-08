@@ -1,0 +1,38 @@
+{
+  "id": "1921-cpc-founding",
+  "title": "中国共产党第一次全国代表大会",
+  "aliases": ["中共一大"],
+  "period": "民国初年",
+  "category": "政党",
+  "date_start": "1921-07-01",
+  "date_end": "1921-07-31",
+  "date_precision": "month",
+  "date_display": "1921年7月",
+  "places": [
+    { "historical": "上海法租界望志路106号", "modern": "上海市兴业路76号", "coord": [121.47, 31.23] },
+    { "historical": "浙江嘉兴南湖", "modern": "浙江嘉兴南湖", "coord": [120.76, 30.75] }
+  ],
+  "actors": ["李达", "李汉俊", "张国焘", "刘仁静", "毛泽东", "何叔衡", "董必武", "陈潭秋", "王尽美", "邓恩铭", "陈公博", "周佛海", "包惠僧"],
+  "orgs": ["中国共产党"],
+  "quotes": [
+    {
+      "text": "1921年7月，中国共产党第一次全国代表大会在上海法租界望志路106号（今兴业路76号）开幕。",
+      "source_id": "qstheory-yida",
+      "locator": "正文"
+    },
+    {
+      "text": "党的一大确定党的名称为“中国共产党”。大会通过了中国共产党第一个纲领，明确“革命军队必须与无产阶级一起推翻资本家阶级的政权”，“承认无产阶级专政，直到阶级斗争结束”，“消灭资本家私有制”，以及联合第三国际。",
+      "source_id": "qstheory-yida",
+      "locator": "正文"
+    },
+    {
+      "text": "党的一大宣告中国共产党正式成立。",
+      "source_id": "qstheory-yida",
+      "locator": "正文"
+    }
+  ],
+  "source_ids": ["qstheory-yida"],
+  "tags": ["政党", "建党"],
+  "status": "published",
+  "last_reviewed": "2026-11-08"
+}

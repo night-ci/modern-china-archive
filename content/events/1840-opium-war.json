@@ -1,0 +1,38 @@
+{
+  "id": "1840-opium-war",
+  "title": "鸦片战争",
+  "aliases": ["第一次鸦片战争"],
+  "period": "晚清",
+  "category": "战争",
+  "date_start": "1840-01-01",
+  "date_end": "1842-12-31",
+  "date_precision": "year",
+  "date_display": "1840年—1842年",
+  "places": [
+    { "historical": "广东虎门", "modern": "广东东莞虎门", "coord": [113.67, 22.81] },
+    { "historical": "江苏南京", "modern": "江苏南京", "coord": [118.78, 32.06] }
+  ],
+  "actors": ["林则徐", "道光帝"],
+  "orgs": ["英国", "清朝"],
+  "quotes": [
+    {
+      "text": "1840年，急于向海外扩张的欧洲资本主义强国——英国，发动侵略中国的鸦片战争，用炮舰轰开中国的大门。",
+      "source_id": "qstheory-dangshi-1",
+      "locator": "第一编第一章"
+    },
+    {
+      "text": "1842年8月，英军直逼南京城下，迫使清政府屈服，订立了中国近代历史上第一个丧权辱国的不平等条约——中英《南京条约》。中国割让香港，开放广州、厦门、福州、宁波、上海为通商口岸，赔款“洋银”2100万元。",
+      "source_id": "qstheory-dangshi-1",
+      "locator": "第一编第一章"
+    },
+    {
+      "text": "鸦片战争成为中国历史的转折点。",
+      "source_id": "qstheory-dangshi-1",
+      "locator": "第一编第一章"
+    }
+  ],
+  "source_ids": ["qstheory-dangshi-1"],
+  "tags": ["战争", "不平等条约", "晚清"],
+  "status": "published",
+  "last_reviewed": "2026-11-08"
+}
