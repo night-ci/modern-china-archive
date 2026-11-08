@@ -37,7 +37,7 @@ a:hover { text-decoration: underline; }
   backdrop-filter: blur(8px);
   position: sticky;
   top: 0;
-  z-index: 20;
+  z-index: 2000;
   border-bottom: 1px solid var(--line);
 }
 .head-inner { display: flex; align-items: center; justify-content: space-between; gap: 24px; padding: 12px 0; }
