@@ -47,6 +47,16 @@
 - `docs/roadmap.md`：内容扩充计划与进度。
 - `docs/source-whitelist.md`：来源白名单。
 
+## 知识库
+
+`knowledge-base/` 是网站内容的 Markdown 导出，包含 13 个来源、10 条详解、1012 条党史大事记、733 条国史编年、23 条前编，共 1797 个 Markdown 文件，并附 `index.csv` 总索引。
+
+重新导出：
+
+```powershell
+npm run export-kb
+```
+
 ## 本地开发
 
 无需安装第三方依赖，使用 Node.js 内置模块。
