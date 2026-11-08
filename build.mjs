@@ -192,28 +192,76 @@ function eventCard(e) {
   </article>`;
 }
 
-function mapData() {
-  return events.map(e => {
-    const q = e.quotes[0];
-    const instNames = [...new Set((e.source_ids || []).map(id => {
-      const s = srcById[id];
-      return s ? (instById[s.institution_id] || {}).name : '';
-    }).filter(Boolean))];
-    return {
-      id: e.id,
-      title: e.title,
-      date: e.date_display,
-      period: e.period,
-      url: `events/${e.id}.html`,
-      overview: e.overview || (q ? q.text : ''),
-      source: instNames.join('、'),
-      places: (e.places || []).slice(0, 1)
-    };
+const mapEntries = [];
+const usedMapCurated = new Set();
+for (const c of annotatedChronology) {
+  const cur = curatedFor(c);
+  if (cur) usedMapCurated.add(cur.id);
+  if (!(c.places || []).length) continue;
+  mapEntries.push({
+    id: c.id,
+    title: c.title,
+    date: c.date_display,
+    date_start: c.date_start,
+    period: c.period,
+    text: c.text,
+    places: c.places.slice(0, 1),
+    url: cur ? `events/${cur.id}.html` : `chronology.html#${c.id}`,
+    detail: !!cur,
+    kind: 'chron'
   });
 }
+for (const c of annotatedPre) {
+  if (!(c.places || []).length) continue;
+  mapEntries.push({
+    id: c.id,
+    title: c.title,
+    date: c.date_display,
+    date_start: c.date_start,
+    period: c.period,
+    text: c.text,
+    places: c.places.slice(0, 1),
+    url: `timeline.html#${c.id}`,
+    detail: false,
+    kind: 'pre'
+  });
+}
+for (const c of annotatedPrc) {
+  const cur = curatedFor(c);
+  if (cur) usedMapCurated.add(cur.id);
+  if (!(c.places || []).length) continue;
+  mapEntries.push({
+    id: c.id,
+    title: c.title,
+    date: c.date_display,
+    date_start: c.date_start,
+    period: c.period,
+    text: c.text,
+    places: c.places.slice(0, 1),
+    url: cur ? `events/${cur.id}.html` : `prc-chronology.html#${c.id}`,
+    detail: !!cur,
+    kind: 'prc'
+  });
+}
+for (const e of events) {
+  if (usedMapCurated.has(e.id) || !(e.places || []).length) continue;
+  mapEntries.push({
+    id: e.id,
+    title: e.title,
+    date: e.date_display,
+    date_start: e.date_start,
+    period: e.period,
+    text: e.overview || '',
+    places: (e.places || []).slice(0, 1).map(p => ({ name: p.historical, modern: p.modern, coord: p.coord })),
+    url: `events/${e.id}.html`,
+    detail: true,
+    kind: 'event'
+  });
+}
+mapEntries.sort((a, b) => String(a.date_start || a.date).localeCompare(String(b.date_start || b.date)));
+const mapPeriodCounts = PERIODS.map(p => [p, mapEntries.filter(e => e.period === p).length]).filter(x => x[1]);
 
 // ---------- home ----------
-const periodCounts = PERIODS.map(p => [p, events.filter(e => e.period === p).length]).filter(x => x[1]);
 const homeBody = `
 <section class="hero">
   <div class="wrap">
@@ -250,18 +298,7 @@ const homeBody = `
   </div>
 </section>
 
-<section class="section wrap">
-  <div class="section-head">
-    <h2>详解</h2>
-  </div>
-  <div class="period-bar">
-    ${periodCounts.map(([p, n]) => `<a href="timeline.html#${encodeURIComponent(p)}">${esc(p)} <span>${n}</span></a>`).join('')}
-  </div>
-  <div class="grid" id="eventGrid">
-    ${events.map(eventCard).join('')}
-  </div>
-  <div class="empty" id="empty" hidden>没有匹配的事件。</div>
-</section>
+
 
 <section class="section wrap">
   <div class="long-banner">
@@ -297,9 +334,9 @@ const homeBody = `
   </div>
 </section>
 
-<script>window.__EVENTS__ = ${JSON.stringify(mapData())};</script>
+<script>window.__CHRONOLOGY__ = ${JSON.stringify(mapEntries)}; window.__TOTAL__ = ${mapEntries.length};</script>
 <script src="assets/leaflet/leaflet.js"></script>
-<script src="assets/map.js"></script>
+<script src="assets/history-map.js"></script>
 `;
 
 fs.writeFileSync(path.join(dist, 'index.html'), layout({
@@ -565,75 +602,6 @@ fs.writeFileSync(path.join(dist, 'prc-chronology.html'), layout({
 }));
 
 // ---------- map page ----------
-const mapEntries = [];
-const usedMapCurated = new Set();
-for (const c of annotatedChronology) {
-  const cur = curatedFor(c);
-  if (cur) usedMapCurated.add(cur.id);
-  if (!(c.places || []).length) continue;
-  mapEntries.push({
-    id: c.id,
-    title: c.title,
-    date: c.date_display,
-    date_start: c.date_start,
-    period: c.period,
-    text: c.text,
-    places: c.places.slice(0, 1),
-    url: cur ? `events/${cur.id}.html` : `chronology.html#${c.id}`,
-    detail: !!cur,
-    kind: 'chron'
-  });
-}
-for (const c of annotatedPre) {
-  if (!(c.places || []).length) continue;
-  mapEntries.push({
-    id: c.id,
-    title: c.title,
-    date: c.date_display,
-    date_start: c.date_start,
-    period: c.period,
-    text: c.text,
-    places: c.places.slice(0, 1),
-    url: `timeline.html#${c.id}`,
-    detail: false,
-    kind: 'pre'
-  });
-}
-for (const c of annotatedPrc) {
-  const cur = curatedFor(c);
-  if (cur) usedMapCurated.add(cur.id);
-  if (!(c.places || []).length) continue;
-  mapEntries.push({
-    id: c.id,
-    title: c.title,
-    date: c.date_display,
-    date_start: c.date_start,
-    period: c.period,
-    text: c.text,
-    places: c.places.slice(0, 1),
-    url: cur ? `events/${cur.id}.html` : `prc-chronology.html#${c.id}`,
-    detail: !!cur,
-    kind: 'prc'
-  });
-}
-for (const e of events) {
-  if (usedMapCurated.has(e.id) || !(e.places || []).length) continue;
-  mapEntries.push({
-    id: e.id,
-    title: e.title,
-    date: e.date_display,
-    date_start: e.date_start,
-    period: e.period,
-    text: e.overview || '',
-    places: (e.places || []).slice(0, 1).map(p => ({ name: p.historical, modern: p.modern, coord: p.coord })),
-    url: `events/${e.id}.html`,
-    detail: true,
-    kind: 'event'
-  });
-}
-mapEntries.sort((a, b) => String(a.date_start || a.date).localeCompare(String(b.date_start || b.date)));
-const mapPeriodCounts = PERIODS.map(p => [p, mapEntries.filter(e => e.period === p).length]).filter(x => x[1]);
-
 const mapPageBody = `
 <section class="page-head wrap">
   <p class="kicker">地图</p>
@@ -899,7 +867,7 @@ fs.writeFileSync(path.join(dist, 'corrections.html'), layout({
 }));
 
 // ---------- data ----------
-fs.writeFileSync(path.join(dist, 'data', 'events.json'), JSON.stringify(mapData(), null, 2));
+fs.writeFileSync(path.join(dist, 'data', 'events.json'), JSON.stringify(events, null, 2));
 fs.writeFileSync(path.join(dist, 'data', 'chronology.json'), JSON.stringify(chronology, null, 2));
 fs.writeFileSync(path.join(dist, 'data', 'chronology-prc.json'), JSON.stringify(prcChronologyRaw, null, 2));
 fs.writeFileSync(path.join(dist, 'data', 'pre1921.json'), JSON.stringify(pre1921, null, 2));
