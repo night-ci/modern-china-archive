@@ -63,14 +63,6 @@ npm run serve
 node scripts/build-chronology.mjs
 ```
 
-## 地图
-
-地图使用天地图 WMTS 底图，Key 在 `assets/map.js` 与 `assets/history-map.js` 中。浏览器端 Key 需要在天地图控制台配置域名白名单：
-
-- `night-ci.github.io`
-
-未加入白名单时，底图瓦片会返回 403，页面其余部分不受影响。
-
 ## 部署
 
 推送到 `main` 后，GitHub Actions 自动构建 `dist/` 并部署到 GitHub Pages。工作流见 `.github/workflows/pages.yml`。
