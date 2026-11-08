@@ -218,7 +218,7 @@ const homeBody = `
 <section class="hero">
   <div class="wrap">
     <p class="kicker">国家机构公开资料</p>
-    <div class="hero-tags"><span class="badge">${events.length} 条详解</span><span class="badge">${longCount} 条党史大事记</span><span class="badge">${prcTotal} 条国史编年</span><span class="badge">${preCount} 条前编</span><span class="badge">1840—2021</span></div>
+    <div class="hero-tags"><span class="badge">${longCount} 条党史大事记</span><span class="badge">${prcTotal} 条国史编年</span><span class="badge">${preCount} 条前编</span><span class="badge">1840—2021</span></div>
     <h1>中国近现代史<br>史料图谱</h1>
     <p class="purpose">本站汇集国家机构公开的中国近现代史编年资料，时间范围为 1840—2021 年。条目按时间、地点和来源编排，提供原文摘录与原文链接，供检索、核对和引用。</p>
     <div class="hero-actions">
@@ -231,7 +231,6 @@ const homeBody = `
 </section>
 
 <section class="stats wrap">
-  <div><strong>${events.length}</strong><span>条详解</span></div>
   <div><strong>${longCount}</strong><span>党史大事记</span></div>
   <div><strong>${prcTotal}</strong><span>国史编年</span></div>
   <div><strong>${preCount}</strong><span>条前编</span></div>

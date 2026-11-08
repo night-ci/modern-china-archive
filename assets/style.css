@@ -96,7 +96,7 @@ a:hover { text-decoration: underline; }
 
 /* stats */
 .stats {
-  display: grid; grid-template-columns: repeat(6, 1fr);
+  display: grid; grid-template-columns: repeat(5, 1fr);
   border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);
   margin-top: 10px;
 }
