@@ -13,8 +13,8 @@
   var TILE = 'https://t{s}.tianditu.gov.cn/{layer}_w/wmts?SERVICE=WMTS&REQUEST=GetTile&VERSION=1.0.0&LAYER={layer}&STYLE=default&TILEMATRIXSET=w&FORMAT=tiles&tk=' + KEY + '&TILECOL={x}&TILEROW={y}&TILEMATRIX={z}';
   var ATTRIB = '天地图 · 国家地理信息公共服务平台 · GS(2026)4921号';
 
-  var map = L.map('map', { zoomControl: true, attributionControl: true })
-    .setView([34.0, 108.5], 4);
+  var map = L.map('map', { zoomControl: true, attributionControl: true, zoomSnap: 0.5 })
+    .setView([34.0, 108.5], 4.5);
 
   function addLayer(layer, opts) {
     var url = TILE.replace(/\{layer\}/g, layer);

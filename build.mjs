@@ -78,7 +78,7 @@ ${base ? `<base href="${base}">` : ''}
 <footer class="site-foot">
   <div class="wrap">
     <p>本站只收录国家机构公开资料，逐条标注出处；除结构化标签与编纂说明外，不添加解释性文字。</p>
-    <p>原文版权归原机构所有；本站以摘录与链接方式引用。<a href="methodology.html">编纂原则</a> · <a href="corrections.html">勘误</a> · <a href="${SITE.repo}" target="_blank" rel="noopener">GitHub</a></p>
+    <p>原文版权归原机构所有；本站以摘录与链接方式引用。<a href="methodology.html">编纂原则</a> · <a href="corrections.html">勘误</a> · <a href="data/events.json">数据</a> · <a href="${SITE.repo}" target="_blank" rel="noopener">GitHub</a></p>
   </div>
 </footer>
 <script src="assets/app.js"></script>
@@ -467,4 +467,19 @@ fs.writeFileSync(path.join(dist, 'corrections.html'), layout({
 
 // ---------- data ----------
 fs.writeFileSync(path.join(dist, 'data', 'events.json'), JSON.stringify(mapData(), null, 2));
+
+// ---------- sitemap / robots ----------
+const BASE_URL = 'https://night-ci.github.io/modern-china-archive/';
+const pages = [
+  '', 'timeline.html', 'map.html', 'sources.html', 'institutions.html',
+  'methodology.html', 'corrections.html',
+  ...events.map(e => `events/${e.id}.html`)
+];
+const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+${pages.map(p => `  <url><loc>${BASE_URL}${p}</loc><lastmod>2026-11-08</lastmod></url>`).join('\n')}
+</urlset>
+`;
+fs.writeFileSync(path.join(dist, 'sitemap.xml'), sitemap);
+fs.writeFileSync(path.join(dist, 'robots.txt'), `User-agent: *\nAllow: /\nSitemap: ${BASE_URL}sitemap.xml\n`);
 console.log(`Built ${events.length} events, ${sources.length} sources, ${institutions.length} institutions.`);
